@@ -114,6 +114,7 @@ void insert(int arr[],int n,int key)
     //or use minHeapify(arr,n,n-1);
 }
 
+
 void increasekey(int arr[],int i,int key)
 {
     if (key<arr[i])
@@ -138,6 +139,12 @@ void maxheapsortasc(int arr[],int n)
         swap(arr[0],arr[i]);
         maxheapify(arr,i,0);
     }
+}
+
+void deleteKey(int arr[], int& n, int i) 
+{
+    increasekey(arr, i, INT16_MAX);
+    heapextractmax(arr, n);
 }
 
 int main()

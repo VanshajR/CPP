@@ -1,4 +1,5 @@
 #include<iostream>
+#include<vector>
 using namespace std;
 class node
 {
@@ -13,11 +14,11 @@ class node
         prev=NULL;
     }
 };
-class linkl
+class dlinkl
 {
     public:
     node* head;
-    linkl()
+    dlinkl()
     {
         head=NULL;
     }
@@ -196,18 +197,73 @@ class linkl
             temp=temp->next;
         }
     }
+    void forwardtravel(vector<int> &v)
+    {
+        if(head==NULL)
+        {
+            cout<<"Empty";
+            return;
+        }
+        node* temp=head;
+        while(temp!=NULL)
+        {
+            v.push_back(temp->data);
+            temp=temp->next;
+        }
+    }
+    void reversetravel(vector<int> &v)
+    {
+        if(head==NULL)
+        {
+            cout<<"Empty";
+            return;
+        }
+        node* temp=head;
+        while(temp->next!=NULL)
+        {
+            temp=temp->next;
+        }
+        while(temp!=NULL)
+        {
+            v.push_back(temp->data);
+            temp=temp->prev;
+        }
+    }
 };
 int main()
 {
-    linkl l;
+    dlinkl l;
     l.insend(1);
     l.insend(2);
-    l.insend(1);
-    l.insend(2);
-    l.insend(1);
     l.insend(3);
+    l.insend(2);
     l.insend(1);
 
-    l.countdel(1);
-    l.display();
+    vector<int> v1;
+    vector<int> v2;
+    l.forwardtravel(v1);
+    l.reversetravel(v2);
+    int i=0,j=0,flag=1;
+    while(i<v1.size() && j<v2.size())
+    {
+        if(v1[i]==v2[j])
+        {
+            i++;
+            j++;
+        }
+        else
+        {
+            flag=0;
+            break;
+        }
+    }
+    if(flag==1)
+    {
+        cout<<"Palindrome";
+    }
+    else
+    {
+        cout<<"Not a Palindrome";
+    }
+    return 0;
 }

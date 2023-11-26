@@ -165,13 +165,15 @@ node* delnode(node* root,int key)
         if(root->left==NULL)
         {
             node *temp=root->right;
-            free(root);
+            // free(root);
+            delete root;
             return temp;
         }
         else if(root->right==NULL)
         {
             node* temp=root->left;
-            free(root);
+            // free(root);
+            delete root;
             return temp;
         }
         // using predecessor
@@ -371,41 +373,41 @@ node* makeTreePostIn(int postord[],int inord[], int start, int end,int size)
 }
 int main()
 {
-    // node *root = new node(5);
-    // node *p1 = new node(3);
-    // node *p2 = new node(6);
-    // node *p3 = new node(1);
-    // node *p4 = new node(4);
+    node *root = new node(5);
+    node *p1 = new node(3);
+    node *p2 = new node(6);
+    node *p3 = new node(1);
+    node *p4 = new node(4);
 
-    // root->left=p1;
-    // root->right=p2;
-    // p1->left=p3;
-    // p1->right=p4;
+    root->left=p1;
+    root->right=p2;
+    p1->left=p3;
+    p1->right=p4;
     
-    // insert(root,7);
-    // cout<<root->right->right->data<<endl;
-    // inorder(root);
-    // cout<<"\n";
-    // root=delnode(root,3);
-    // root=delnode(root,7);
-    // cout<<"Final Preorder:";
-    // preorder(root);
-    // cout<<"\n";
-    // cout<<"Final Inorder:";
-    // inorder(root);
-    // cout<<"\n";
-    // cout<<"Final Postorder:";
-    // postorder(root);
-    // cout<<"\n";
-    // cout<<"Min value:"<<minval(root)<<endl;
-    // cout<<"Max value:"<<maxval(root)<<endl;
-    // cout<<"Max deapth:"<<maxdeapth(root)<<endl;
-    // cout<<"Min deapth:"<<mindeapth(root)<<endl;
+    insert(root,7);
+    cout<<root->right->right->data<<endl;
+    inorder(root);
+    cout<<"\n";
+    root=delnode(root,3);
+    root=delnode(root,7);
+    cout<<"Final Preorder:";
+    preorder(root);
+    cout<<"\n";
+    cout<<"Final Inorder:";
+    inorder(root);
+    cout<<"\n";
+    cout<<"Final Postorder:";
+    postorder(root);
+    cout<<"\n";
+    cout<<"Min value:"<<minval(root)<<endl;
+    cout<<"Max value:"<<maxval(root)<<endl;
+    cout<<"Max deapth:"<<maxdeapth(root)<<endl;
+    cout<<"Min deapth:"<<mindeapth(root)<<endl;
 
     int preord[]={1,2,4,3,5};
     int inord[]={4,2,1,5,3};
-    node* root=makeTreePreIn(preord,inord,0,4);
-    inorder(root);
+    node* root2=makeTreePreIn(preord,inord,0,4);
+    inorder(root2);
     cout<<"\n";
     node* root1=makeTreePostIn(preord,inord,0,4,5);
     inorder(root1);
