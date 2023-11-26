@@ -31,11 +31,11 @@ class queue
     {
         return rear-front+1;
     }
-    int givefront()
+    int peek()
     {
         if(isEmpty())
         {
-            cout<<"\nEmpty\n";
+            return -1;
         }
         else
         {
@@ -52,6 +52,7 @@ class queue
         {
             front=0;
             rear=0;
+            element[rear]=x;
         }
         else
         {
@@ -85,7 +86,43 @@ int main()
     q.enqueue(3);
     q.enqueue(2);
     q.enqueue(1);
-    q.dequeue();    
-    q.show();
+    int ch;
+    cout<<"1. Enqueue\n2. Dequeue\n3. Peek\n4. Size\n5. Show\n6. Exit\n";
+    cin>>ch;
+    switch(ch)
+    {
+        case 1:
+        {
+            int x;
+            cout<<"Enter element to enqueue: ";
+            cin>>x;
+            q.enqueue(x);
+            break;
+        }
+        case 2:
+        {
+            q.dequeue();
+            break;
+        }
+        case 3:
+        {
+            cout<<q.peek();
+            break;
+        }
+        case 4:
+        {
+            cout<<q.size();
+            break;
+        }
+        case 5:
+        {
+            q.show();
+            break;
+        }
+        case 6:
+        {
+            exit(0);
+        }
+    }
     return 0;
 }
