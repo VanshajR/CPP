@@ -76,7 +76,7 @@ void postorder(node* root)
 
 void inorder(node* root)
 {
-    node* c=root;
+
     if(root==NULL)
     {
         return;
@@ -195,34 +195,18 @@ int main()
     p1->left=p3;
     p1->right=p4;
 
-    // node* n1 = search_r(root,4);
-    // if(n1!=NULL)
-    // {
-    //     cout<<"Found: "<<n1->data<<endl;
-    // }
-    // else
-    // {
-    //     cout<<"element not found\n";
-    // }
-    
-    // node* n2 = search_r(root,8);
-    // if(n2!=NULL)
-    // {
-    //     cout<<"Found: "<<n2->data<<endl;
-    // }
-    // else
-    // {
-    //     cout<<"element not found\n";
-    // }
-
     insert(root,7);
     cout<<root->right->right->data<<endl;
     inorder(root);
     cout<<"\n";
-    delnode(root,3);
     root=delnode(root,3);
+    cout<<"Final Preorder:";
+    preorder(root);
+    cout<<"\n";
+    cout<<"Final Inorder:";
     inorder(root);
-
-
-
+    cout<<"\n";
+    cout<<"Final Postorder:";
+    postorder(root);
+    return 0;
 }
