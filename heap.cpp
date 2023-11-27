@@ -85,7 +85,7 @@ void disp(int arr[],int n)
     cout<<"\n";
 }
 
-int heapextractmax(int arr[],int n)
+int heapextractmax(int arr[],int &n)
 {
     if(n<1)
     {
@@ -110,7 +110,7 @@ void insert(int arr[],int n,int key)
         swap(arr[i],arr[(i-1)/2]);
         i=(i-1)/2;
     }
-    // maxheapify(arr,n,n-1);
+    maxheapify(arr,n,n-1);
     //or use minHeapify(arr,n,n-1);
 }
 
@@ -149,15 +149,47 @@ void deleteKey(int arr[], int& n, int i)
 
 int main()
 {
-    int a[]={4,10,3,5,1,7,8,9,2,6};
-    int b[]={4,10,3,5,1,7,8,9,2,6};
-    int n=sizeof(a)/sizeof(a[0]);
-    int m=sizeof(b)/sizeof(b[0]);
-    disp(a,n);
-    buildmaxheap(a,n);
-    cout<<"\n Max heap:-\n";
-    disp(a,n);
-    cout<<"\n Min heap:-\n";
-    buildminheap(b,m);
-    disp(b,m);
+    // int a[]={4,10,3,5,1,7,8,9,2,6};
+    // int b[]={4,10,3,5,1,7,8,9,2,6};
+    // int n=sizeof(a)/sizeof(a[0]);
+    // int m=sizeof(b)/sizeof(b[0]);
+    // disp(a,n);
+    // buildmaxheap(a,n);
+    // cout<<"\n Max heap:-\n";
+    // disp(a,n);
+    // cout<<"\n Min heap:-\n";
+    // buildminheap(b,m);
+    // disp(b,m);
+    //return 0;
+
+    int a[] = {4, 10, 3, 5, 1, 7, 8, 9, 2, 6};
+    int n = sizeof(a) / sizeof(a[0]);
+    disp(a, n);
+    buildmaxheap(a, n);
+    cout << "\nMax heap:\n";
+    disp(a, n);
+
+    cout << "\nExtracting maximum elements:\n";
+    int originalSize = n;
+    while (n > 0) {
+        int max = heapextractmax(a, n);
+        std::cout << max << " ";
+    }
+    cout << "\n";
+
+    int b[] = {4, 10, 3, 5, 1, 7, 8, 9, 2, 6};
+    // int c[]=b[];
+    int m = sizeof(b) / sizeof(b[0]);
+    buildmaxheap(b, m);
+    cout << "\nInserting elements:\n";
+    // for (int i = 0; i < m; i++) {
+    //     insert(b, m, b[i]);
+    //     cout << "Inserted: " << b[i] << ", Current Max: " << b[0] << "\n";
+    //     // maxheapify(b, m, i);
+    // }
+    // maxheapify(b, m, 0);
+    cout << "\nMax heap:\n";
+    disp(b, m);
+    return 0;
+
 }

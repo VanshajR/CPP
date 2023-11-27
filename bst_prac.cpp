@@ -290,13 +290,13 @@ void preorderwithoutrecursion(node* root)
         node* temp=s.top();
         s.pop();
         cout<<temp->data<<" ";
-        if(temp->left!=NULL)
-        {
-            s.push(temp->left);
-        }
         if(temp->right!=NULL)
         {
             s.push(temp->right);
+        }
+        if(temp->left!=NULL)
+        {
+            s.push(temp->left);
         }
     }
 }
@@ -382,7 +382,7 @@ node* makeTreePostIn(int postord[],int inord[], int start, int end,int size)
 void makeBinaryTree(node* root)
 {
     int x;
-    cout<<"Enter the value of root:";
+    cout<<"\nEnter the value of root:";
     cin>>x;
     root->data=x;
     root->left=NULL;
@@ -411,6 +411,38 @@ void makeBinaryTree(node* root)
         }
     }
 }
+
+bool checkifBST(node* root)
+{
+    if(root==NULL)
+    {
+        return true;
+    }
+
+    if(root->left!=NULL && root->right!=NULL)
+    {
+        if(root->left->data>root->data || root->right->data<root->data)
+        {
+            return false;
+        }
+    }
+    else if(root->left!=NULL)
+    {
+        if(root->left->data>root->data)
+        {
+            return false;
+        }
+    }
+    else if(root->right!=NULL)
+    {
+        if(root->right->data<root->data)
+        {
+            return false;
+        }
+    }
+    return checkifBST(root->left) && checkifBST(root->right);
+}
+
 int main()
 {
     node *root = new node(5);
@@ -430,14 +462,20 @@ int main()
     cout<<"\n";
     root=delnode(root,3);
     root=delnode(root,7);
-    cout<<"Final Preorder:";
+    cout<<"Final Preorder:\n";
     preorder(root);
     cout<<"\n";
-    cout<<"Final Inorder:";
+    preorderwithoutrecursion(root);
+    cout<<"\n";
+    cout<<"Final Inorder:\n";
     inorder(root);
     cout<<"\n";
-    cout<<"Final Postorder:";
+    inorderwithoutrecursion(root);
+    cout<<"\n";
+    cout<<"Final Postorder:\n";
     postorder(root);
+    cout<<"\n";
+    postorderwithoutrecursion(root);
     cout<<"\n";
     cout<<"Min value:"<<minval(root)<<endl;
     cout<<"Max value:"<<maxval(root)<<endl;
@@ -453,9 +491,27 @@ int main()
     inorder(root1);
 
 
-    node* root3 = new node;
-    makeBinaryTree(root3);
-    inorder(root3);
+    // node* root3 = new node;
+    // makeBinaryTree(root3);
+    // inorder(root3);
+    // cout<<"\n";
+
+    node* root4 = new node(8);
+    insert(root4,4);
+    insert(root4,2);
+    insert(root4,3);
+    insert(root4,7);
+    insert(root4,6);
+    inorder(root4);
+    cout<<endl;
+    if(checkifBST(root4))
+    {
+        cout<<"BST";
+    }
+    else
+    {
+        cout<<"Not BST";
+    }
     return 0;
 
 }

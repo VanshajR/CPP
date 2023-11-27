@@ -27,7 +27,6 @@ class node
             right=NULL;
         }
 };
-
 void inorder(node* root)
 {
     if(root==NULL)

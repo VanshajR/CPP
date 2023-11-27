@@ -3,16 +3,16 @@ using namespace std;
 int minindex(vector<int>cost,vector<bool>vis,int n)
 {
     int min=32767;
-    int minindex;
+    int index;
     for(int i=0;i<n;i++)
     {
         if(!vis[i] && cost[i]<min)
         {
             min=cost[i];
-            minindex=i;
+            index=i;
         }
     }
-    return minindex;
+    return index;
 }
 
 void dijkstraL(vector<vector<pair<int,int>>>&adjL,int n)
