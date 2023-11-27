@@ -29,10 +29,12 @@ void dijkstraL(vector<vector<pair<int,int>>>&adjL,int n)
         complete[index]=true;
         for(auto it : adjL[index])
         {
-            if(!complete[it.first] && cost[index]!=INT_MAX && cost[index]+it.second<cost[it.first])
+            int travel=it.first;
+            int weight=it.second;
+            if(!complete[travel] && cost[index]!=INT_MAX && cost[index]+weight<cost[travel])
             {
-                cost[it.first]=cost[index]+it.second;
-                parent[it.first]=index;
+                cost[travel]=cost[index]+weight;
+                parent[travel]=index;
             }  //for matrix, it.first is j and it.second is adjM[index][j]
         }
 
@@ -59,10 +61,12 @@ void dijkstraM(int **adjM,int n)
         complete[index]=true;
         for(int j=0;j<n;j++)
         {
-            if(!complete[j] && cost[index]!=INT_MAX && adjM[index][j] && cost[index]+adjM[index][j]<cost[j])
+            int travel=j;
+            int weight=adjM[index][j];
+            if(!complete[travel] && cost[index]!=INT_MAX && weight!=0 && cost[index]+weight<cost[travel])
             {
-                cost[j]=cost[index]+adjM[index][j];
-                parent[j]=index;
+                cost[travel]=cost[index]+weight;
+                parent[travel]=index;
             }
         }
 

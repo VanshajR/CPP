@@ -1,5 +1,6 @@
 #include <iostream>
 #include<vector>
+#include<climits>
 using namespace std;
 int ismin=0,ismat=0,islist=0;
 int minindex(vector<int>cost,vector<bool>vis,int n)
@@ -20,9 +21,8 @@ int minindex(vector<int>cost,vector<bool>vis,int n)
 
 void primMST_L(vector<vector<pair<int,int>>>&adjL,int n)
 {
-    int INF=32767;
     vector<int> parent(n,-1);
-    vector<int> cost(n,INF);
+    vector<int> cost(n,INT_MAX);
     vector<bool>vis(n,false);
     int mincost=0;
     parent[0]=-1;
@@ -55,9 +55,9 @@ void primMST_L(vector<vector<pair<int,int>>>&adjL,int n)
 
 void primMST_M(int **adjM,int n)
 {
-    int mincost=0,INF=32767;
+    int mincost=0;
     vector<int> parent(n,-1);
-    vector<int> cost(n,INF);
+    vector<int> cost(n,INT_MAX);
     vector<bool>vis(n,false);
 
     parent[0]=-1;
@@ -68,11 +68,13 @@ void primMST_M(int **adjM,int n)
         vis[mincostindex]=true;
         for(int j=0;j<n;j++)
         {
+            int travel=j;
+            int weight=adjM[mincostindex][j];
             ismat++;
-            if(adjM[mincostindex][j]!=0 && !vis[j] && adjM[mincostindex][j]<cost[j])
+            if(weight!=0 && !vis[travel] && weight<cost[travel])
             {
-                cost[j]=adjM[mincostindex][j];
-                parent[j]=mincostindex;
+                cost[travel]=weight;
+                parent[travel]=mincostindex;
             }
         }
     }
