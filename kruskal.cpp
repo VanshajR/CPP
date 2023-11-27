@@ -61,7 +61,7 @@ int main() {
     // {
     //     cout<<"Edge "<<i+1<<" and its weight: "<<endl;
     //     cin>>u>>v>>w;
-    //     edges.push_back({w,u,v});
+    //     edges.push_back({w,{u,v});
         
     // }
     edges.push_back({5,{1,2}});     
