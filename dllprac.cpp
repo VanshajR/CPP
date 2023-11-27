@@ -197,7 +197,7 @@ class dlinkl
             temp=temp->next;
         }
     }
-    void forwardtravel(vector<int> &v)
+    void travel(vector<int> &v)
     {
         if(head==NULL)
         {
@@ -209,24 +209,6 @@ class dlinkl
         {
             v.push_back(temp->data);
             temp=temp->next;
-        }
-    }
-    void reversetravel(vector<int> &v)
-    {
-        if(head==NULL)
-        {
-            cout<<"Empty";
-            return;
-        }
-        node* temp=head;
-        while(temp->next!=NULL)
-        {
-            temp=temp->next;
-        }
-        while(temp!=NULL)
-        {
-            v.push_back(temp->data);
-            temp=temp->prev;
         }
     }
 };
@@ -240,16 +222,14 @@ int main()
     l.insend(1);
 
     vector<int> v1;
-    vector<int> v2;
-    l.forwardtravel(v1);
-    l.reversetravel(v2);
-    int i=0,j=0,flag=1;
-    while(i<v1.size() && j<v2.size())
+    l.travel(v1);
+    int i=0,flag=1;
+    int n=v1.size()-1;
+    while(i<n)
     {
-        if(v1[i]==v2[j])
+        if(v1[i]==v1[n-i])
         {
             i++;
-            j++;
         }
         else
         {

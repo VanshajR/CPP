@@ -1,5 +1,6 @@
 #include<iostream>
 #include<stack>
+#include<queue>
 using namespace std;
 class node
 {
@@ -7,6 +8,12 @@ class node
         int data;
         node* left;
         node* right;
+        node()
+        {
+            data=0;
+            left=NULL;
+            right=NULL;
+        }
         node(int x)
         {
             data=x;
@@ -371,6 +378,39 @@ node* makeTreePostIn(int postord[],int inord[], int start, int end,int size)
     nn->right = makeTreePostIn(postord,inord,pos+1,end,size);
     nn->left = makeTreePostIn(postord,inord,start,pos-1,size);
 }
+
+void makeBinaryTree(node* root)
+{
+    int x;
+    cout<<"Enter the value of root:";
+    cin>>x;
+    root->data=x;
+    root->left=NULL;
+    root->right=NULL;
+    queue<node*>q;
+    q.push(root);
+    while(!q.empty())
+    {
+        node* temp=q.front();
+        q.pop();
+        cout<<"Enter the value of left child of "<<temp->data<<":";
+        cin>>x;
+        if(x!=-1)
+        {
+            node* nn=new node(x);
+            temp->left=nn;
+            q.push(nn);
+        }
+        cout<<"Enter the value of right child of "<<temp->data<<":";
+        cin>>x;
+        if(x!=-1)
+        {
+            node* nn=new node(x);
+            temp->right=nn;
+            q.push(nn);
+        }
+    }
+}
 int main()
 {
     node *root = new node(5);
@@ -411,6 +451,11 @@ int main()
     cout<<"\n";
     node* root1=makeTreePostIn(preord,inord,0,4,5);
     inorder(root1);
+
+
+    node* root3 = new node;
+    makeBinaryTree(root3);
+    inorder(root3);
     return 0;
 
 }
