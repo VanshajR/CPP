@@ -190,6 +190,26 @@ class linkl
             temp=temp->next;
         }
     }
+    void sortlinkl()
+    {
+        node* temp=head;
+        while(temp!=NULL)
+        {
+            node* temp1=temp->next;
+            while(temp1!=NULL)
+            {
+                if(temp->data>temp1->data)
+                {
+                    int t=temp->data;
+                    temp->data=temp1->data;
+                    temp1->data=t;
+                }
+                temp1=temp1->next;
+            }
+            temp=temp->next;
+        
+        }
+    }
 };
 int main()
 {
@@ -204,4 +224,5 @@ int main()
 
     l.countdel(1);
     l.display();
+    return 0;
 }

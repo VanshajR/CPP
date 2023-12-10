@@ -207,26 +207,26 @@ node* revk(node* &h,int k)
     }
     if(c>=k)
     {
-    c=0;
-    temp=h;
-    while(temp!=NULL&&c<k)
-    {
-        next=temp->next;
-        temp->next=prev;
-        prev=temp;
-        temp=next;
-        c++;
+        c=0;
+        temp=h;
+        while(temp!=NULL&&c<k)
+        {
+            next=temp->next;
+            temp->next=prev;
+            prev=temp;
+            temp=next;
+            c++;
+        }
+        if(next!=NULL)
+        {
+            h->next = revk(next,k);
+        }
+        return prev;
     }
-    if(next!=NULL)
+    else
     {
-        h->next = revk(next,k);
+        return h;
     }
-    return prev;
-}
-else
-{
-    return h;
-}
 }
 node* reverse(node* &h)
 {

@@ -97,6 +97,11 @@ void insert(node* root,int key)
 {
     node* prev=NULL;
     node* nn=new node(key);
+    if(root==NULL)
+    {
+        root=nn;
+        return;
+    }
     while(root!=NULL)
     {
         prev=root;
@@ -121,6 +126,29 @@ void insert(node* root,int key)
     else
     {
         prev->left=nn;
+    }
+}
+
+void insertrecursive(node* root,int key)
+{
+    if(root==NULL)
+    {
+        node* nn=new node(key);
+        root=nn;
+        return;
+    }
+    if(root->data==key)
+    {
+        cout<<"Cannot insert duplicate key"<<endl;
+        return;
+    }
+    else if(root->data<key)
+    {
+        insertrecursive(root->right,key);
+    }
+    else
+    {
+        insertrecursive(root->left,key);
     }
 }
 
